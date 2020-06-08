@@ -1,4 +1,4 @@
-package com.ezpz.goceries
+package com.ezpz.delivery
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

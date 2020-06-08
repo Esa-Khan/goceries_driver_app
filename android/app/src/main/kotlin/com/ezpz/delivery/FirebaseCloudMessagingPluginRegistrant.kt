@@ -1,4 +1,4 @@
-package com.ezpz.goceries
+package com.ezpz.delivery
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugins.firebasemessaging.FirebaseMessagingPlugin
 

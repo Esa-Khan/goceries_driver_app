@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "123587395840",
-    "firebase_url": "https://multi-restaurants-1d0c7.firebaseio.com",
-    "project_id": "multi-restaurants-1d0c7",
-    "storage_bucket": "multi-restaurants-1d0c7.appspot.com"
+    "project_number": "438759403240",
+    "firebase_url": "https://goceries.firebaseio.com",
+    "project_id": "goceries",
+    "storage_bucket": "goceries.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123587395840:android:5fb3b284cc6d982da073e5",
+        "mobilesdk_app_id": "1:438759403240:android:82f42a7c0e928d5c44a35d",
         "android_client_info": {
-          "package_name": "com.smartersvision.deliveryboy"
+          "package_name": "com.ezpz.delivery"
         }
       },
       "oauth_client": [
         {
-          "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
+          "client_id": "438759403240-6d1p3e3v9ci1eg2puc3ne7pbn0et4lgn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDuKazIjr_WMtuLGpwwKb1njg51-sGrTrM"
+          "current_key": "AIzaSyD26ONKSmRdR7z-olGEP2K03ZYNhO9LUhU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
+              "client_id": "438759403240-6d1p3e3v9ci1eg2puc3ne7pbn0et4lgn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -37,85 +37,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123587395840:android:51e6afe3ba4b4967a073e5",
+        "mobilesdk_app_id": "1:438759403240:android:ca64e6ad0b4e471344a35d",
         "android_client_info": {
           "package_name": "com.ezpz.goceries"
         }
       },
       "oauth_client": [
         {
-          "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
+          "client_id": "438759403240-6d1p3e3v9ci1eg2puc3ne7pbn0et4lgn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDuKazIjr_WMtuLGpwwKb1njg51-sGrTrM"
+          "current_key": "AIzaSyD26ONKSmRdR7z-olGEP2K03ZYNhO9LUhU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:123587395840:android:7cc975ea89c0ebf3a073e5",
-        "android_client_info": {
-          "package_name": "com.smartersvision.food_delivery_app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDuKazIjr_WMtuLGpwwKb1njg51-sGrTrM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:123587395840:android:8181be122286a3f2a073e5",
-        "android_client_info": {
-          "package_name": "com.smartervision.restaurant_rlutter_ui"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDuKazIjr_WMtuLGpwwKb1njg51-sGrTrM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "123587395840-2locsqpcb8sd73j2v21vfap13s50itku.apps.googleusercontent.com",
+              "client_id": "438759403240-6d1p3e3v9ci1eg2puc3ne7pbn0et4lgn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
