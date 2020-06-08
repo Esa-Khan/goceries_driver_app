@@ -1,4 +1,4 @@
-package com.smartersvision.deliveryboyapp
+package com.ezpz.goceries
 
 import io.flutter.app.FlutterApplication
 import io.flutter.plugin.common.PluginRegistry
