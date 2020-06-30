@@ -17,8 +17,9 @@ class OrderController extends ControllerMVC {
     final Stream<Order> stream = await getOrders();
     stream.listen((Order _order) {
       setState(() {
-        orders.add(_order);
-      });
+        if (!orders.contains(_order))
+          orders.add(_order);
+      }); 
     }, onError: (a) {
       print(a);
       scaffoldKey?.currentState?.showSnackBar(SnackBar(

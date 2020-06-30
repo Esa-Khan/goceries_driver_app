@@ -45,4 +45,16 @@ class OrderDetailsController extends ControllerMVC {
       ));
     });
   }
+
+  Future<Order> updateOrder(Order _order) async {
+    await deliveredOrder(_order).then((value) {
+//      setState(() {
+//        print(value);
+//      });
+      scaffoldKey?.currentState?.showSnackBar(SnackBar(
+        content: Text('Order Status Updated'),
+      ));
+    });
+  }
+
 }

@@ -62,7 +62,7 @@ class Order {
   Map deliveredMap() {
     var map = new Map<String, dynamic>();
     map["id"] = id;
-    map["order_status_id"] = 5;
+    map["order_status_id"] = int.parse(this.orderStatus.id) + 1;
     return map;
   }
 }

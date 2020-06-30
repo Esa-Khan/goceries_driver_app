@@ -13,6 +13,7 @@ import '../elements/DrawerWidget.dart';
 import '../elements/ShoppingCartButtonWidget.dart';
 import '../helpers/helper.dart';
 import '../models/route_argument.dart';
+import '../models/order.dart';
 
 class OrderWidget extends StatefulWidget {
   final RouteArgument routeArgument;
@@ -25,6 +26,7 @@ class OrderWidget extends StatefulWidget {
   }
 }
 
+
 class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderStateMixin {
   TabController _tabController;
   int _tabIndex = 0;
@@ -33,6 +35,10 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
   _OrderWidgetState() : super(OrderDetailsController()) {
     _con = controller;
   }
+
+  int dropDownValue = 0;
+  List<String> orderStatuses = ['Pending Approval', 'Accepted', 'Being Bought', 'On the Way', 'Delivered'];
+  bool setStatus = true;
 
   @override
   void initState() {
@@ -55,8 +61,11 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    if (_con.order != null && setStatus)
+      dropDownValue = int.parse(_con.order.orderStatus.id) - 1;
     return Scaffold(
       key: _con.scaffoldKey,
       drawer: DrawerWidget(),
@@ -73,7 +82,7 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
               ),
             )
           : Container(
-              height: _con.order.orderStatus.id == '5' ? 190 : 250,
+              height: _con.order.orderStatus.id == '5' ? 140 : 195,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
@@ -108,18 +117,7 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
                         Helper.getPrice(_con.order.deliveryFee, context, style: Theme.of(context).textTheme.subtitle1)
                       ],
                     ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            '${S.of(context).tax} (${_con.order.tax}%)',
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        ),
-                        Helper.getPrice(Helper.getTaxOrder(_con.order), context, style: Theme.of(context).textTheme.subtitle1)
-                      ],
-                    ),
-                    Divider(height: 30),
+                    Divider(height: 5),
                     Row(
                       children: <Widget>[
                         Expanded(
@@ -131,48 +129,85 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
                         Helper.getPrice(Helper.getTotalOrdersPrice(_con.order), context, style: Theme.of(context).textTheme.headline6)
                       ],
                     ),
-                    _con.order.orderStatus.id != '5' ? SizedBox(height: 20) : SizedBox(height: 0),
-                    _con.order.orderStatus.id != '5'
-                        ? SizedBox(
-                            width: MediaQuery.of(context).size.width - 40,
-                            child: FlatButton(
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: Text(S.of(context).delivery_confirmation),
-                                        content: Text(S.of(context).would_you_please_confirm_if_you_have_delivered_all_meals),
-                                        actions: <Widget>[
-                                          // usually buttons at the bottom of the dialog
-                                          FlatButton(
-                                            child: new Text(S.of(context).confirm),
-                                            onPressed: () {
-                                              _con.doDeliveredOrder(_con.order);
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                          FlatButton(
-                                            child: new Text(S.of(context).dismiss),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },
-                              padding: EdgeInsets.symmetric(vertical: 14),
-                              color: Theme.of(context).accentColor,
-                              shape: StadiumBorder(),
-                              child: Text(
-                                S.of(context).delivered,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(color: Theme.of(context).primaryColor),
-                              ),
+                    SizedBox(height: 20),
+                    _con.order.orderStatus.id == '5' ? SizedBox(height: 0)
+                        : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                              border: Border.all(
+                                  color: Theme.of(context).accentColor, style: BorderStyle.solid, width: 3.80),
                             ),
-                          )
-                        : SizedBox(height: 0),
+                          child: DropdownButton<String>(
+                            isDense: true,
+                            icon: Icon(Icons.arrow_drop_down, color: Theme.of(context).accentColor,),
+                            iconSize: 40,
+                            elevation: 16,
+                            style: Theme.of(context).textTheme.headline6.apply(color: Theme.of(context).accentColor),
+                            onChanged: (String changedValue) {
+//                              setState(() {
+//                                newValue;
+//                                print(newValue);
+//                              });
+//                                dropdownValues.add(newValue);
+                            },
+                            value: orderStatuses.elementAt(dropDownValue),
+                            items: orderStatuses.map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                          ),
+                          SizedBox(width: 20),
+                          FlatButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(S.of(context).delivery_confirmation),
+                                      content: Text(S.of(context).are_you_sure_you_want_to_update_the_order),
+                                      actions: <Widget>[
+                                        // usually buttons at the bottom of the dialog
+                                        FlatButton(
+                                          child: new Text(S.of(context).dismiss),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        FlatButton(
+                                          child: new Text(S.of(context).confirm),
+                                          onPressed: ()  {
+                                            _con.updateOrder(_con.order).whenComplete(() {
+                                              _con.refreshOrder().whenComplete((){
+                                                setState(() {
+                                                  dropDownValue++;
+                                                });
+                                                setStatus = false;
+                                                Navigator.of(context).pop();
+                                              });
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            padding: EdgeInsets.symmetric(vertical: 14),
+                            color: Theme.of(context).accentColor,
+                            shape: StadiumBorder(),
+                            child: Text(
+                              S.of(context).update,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(color: Theme.of(context).primaryColor),
+                            ),
+                          ),
+                        ]),
                     SizedBox(height: 10),
                   ],
                 ),
@@ -229,10 +264,8 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
                                       style: Theme.of(context).textTheme.headline4,
                                     ),
                                     Text(
-                                      _con.order.orderStatus.status,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                      style: Theme.of(context).textTheme.caption,
+                                      _con.order.hint == "null" ? "Deliver Now" : "Deliver at: " + _con.order.hint,
+                                      style: Theme.of(context).textTheme.bodyText1.apply(fontSizeFactor: 0.8),
                                     ),
                                     Text(
                                       DateFormat('yyyy-MM-dd HH:mm').format(_con.order.dateTime),
@@ -254,7 +287,7 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
                                     style: Theme.of(context).textTheme.caption,
                                   ),
                                   Text(
-                                    S.of(context).items + ':' + _con.order.foodOrders?.length?.toString() ?? 0,
+                                    S.of(context).items + ': ' + _con.order.foodOrders?.length?.toString() ?? 0,
                                     style: Theme.of(context).textTheme.caption,
                                   ),
                                 ],
