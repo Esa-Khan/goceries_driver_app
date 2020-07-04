@@ -1,3 +1,4 @@
+import 'package:deliveryboy/src/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -47,6 +48,9 @@ class OrderDetailsController extends ControllerMVC {
   }
 
   Future<Order> updateOrder(Order _order) async {
+    if (_order.orderStatus.id == '1' && _order.driver_id == 1) {
+      _order.driver_id = int.parse(currentUser.value.id);
+    }
     await deliveredOrder(_order).then((value) {
 //      setState(() {
 //        print(value);

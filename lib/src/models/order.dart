@@ -1,3 +1,5 @@
+import 'package:deliveryboy/src/repository/user_repository.dart';
+
 import '../helpers/custom_trace.dart';
 import '../models/address.dart';
 import '../models/food_order.dart';
@@ -16,6 +18,7 @@ class Order {
   User user;
   Payment payment;
   Address deliveryAddress;
+  int driver_id;
 
   Order();
 
@@ -31,6 +34,7 @@ class Order {
       payment = jsonMap['payment'] != null ? Payment.fromJSON(jsonMap['payment']) : new Payment.init();
       deliveryAddress = jsonMap['delivery_address'] != null ? Address.fromJSON(jsonMap['delivery_address']) : new Address();
       foodOrders = jsonMap['food_orders'] != null ? List.from(jsonMap['food_orders']).map((element) => FoodOrder.fromJSON(element)).toList() : [];
+      driver_id = jsonMap['driver_id'];
     } catch (e) {
       id = '';
       tax = 0.0;
@@ -63,6 +67,9 @@ class Order {
     var map = new Map<String, dynamic>();
     map["id"] = id;
     map["order_status_id"] = int.parse(this.orderStatus.id) + 1;
+    if (this.orderStatus.id == '1'){
+      map["driver_id"] = this.driver_id;
+    }
     return map;
   }
 }

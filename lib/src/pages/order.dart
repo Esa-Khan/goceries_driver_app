@@ -148,7 +148,6 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
                             elevation: 16,
                             style: Theme.of(context).textTheme.headline6.apply(color: Theme.of(context).accentColor),
                             onChanged: (String changedValue) {
-//                              setState(() {
 //                                newValue;
 //                                print(newValue);
 //                              });
@@ -188,6 +187,7 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
                                                 setState(() {
                                                   dropDownValue++;
                                                 });
+                                                // Not to re-initialize dropdown menu display
                                                 setStatus = false;
                                                 Navigator.of(context).pop();
                                               });
