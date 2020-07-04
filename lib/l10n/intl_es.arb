@@ -109,7 +109,7 @@
   "full_address": "Dirección completa",
   "orders": "Pedidos",
   "history": "Historia",
-  "delivered": "Entregado",
+  "update": "Entregado",
   "dismiss": "Descartar",
   "confirm": "Confirmar",
   "would_you_please_confirm_if_you_have_delivered_all_meals": "¿Podría confirmar si ha entregado todas las comidas al cliente?",

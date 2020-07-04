@@ -12,7 +12,7 @@ import '../models/order_status.dart';
 import '../models/user.dart';
 import '../repository/user_repository.dart' as userRepo;
 
-Future<Stream<Order>> getOrders() async {
+Future<Stream<Order>> getOrders({int driver_id}) async {
   Uri uri = Helper.getUri('api/orders');
   Map<String, dynamic> _queryParams = {};
   final String orderStatusId = "5"; // for delivered status
@@ -20,7 +20,8 @@ Future<Stream<Order>> getOrders() async {
 
   _queryParams['api_token'] = _user.apiToken;
   _queryParams['with'] = 'driver;foodOrders;foodOrders.food;foodOrders.extras;orderStatus;deliveryAddress;payment';
-  _queryParams['search'] = 'driver.id:${_user.id};order_status_id:$orderStatusId;delivery_address_id:null';
+//  _queryParams['search'] = 'driver.id:${_user.id};order_status_id:$orderStatusId;delivery_address_id:null';
+  _queryParams['search'] = 'driver.id:${driver_id};order_status_id:$orderStatusId;delivery_address_id:null';
   _queryParams['searchFields'] = 'driver.id:=;order_status_id:<>;delivery_address_id:<>';
   _queryParams['searchJoin'] = 'and';
   _queryParams['orderBy'] = 'id';

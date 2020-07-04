@@ -44,7 +44,11 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                     children: <Widget>[
                       Text('${S.of(context).order_id}: #${widget.order.id}'),
                       Text(
-                        DateFormat('dd-MM-yyyy | HH:mm').format(widget.order.dateTime),
+                        widget.order.hint == "null" ? "Deliver Now" : "Deliver at: " + widget.order.hint,
+                        style: Theme.of(context).textTheme.bodyText1.apply(fontSizeFactor: 0.8),
+                      ),
+                      Text(
+                        DateFormat('dd/MM/yyyy | HH:mm').format(widget.order.dateTime),
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ],
@@ -85,17 +89,17 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                               Helper.getPrice(widget.order.deliveryFee, context, style: Theme.of(context).textTheme.subtitle1)
                             ],
                           ),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
-                                  '${S.of(context).tax} (${widget.order.tax}%)',
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                ),
-                              ),
-                              Helper.getPrice(Helper.getTaxOrder(widget.order), context, style: Theme.of(context).textTheme.subtitle1)
-                            ],
-                          ),
+//                          Row(
+//                            children: <Widget>[
+//                              Expanded(
+//                                child: Text(
+//                                  '${S.of(context).tax} (${widget.order.tax}%)',
+//                                  style: Theme.of(context).textTheme.bodyText1,
+//                                ),
+//                              ),
+//                              Helper.getPrice(Helper.getTaxOrder(widget.order), context, style: Theme.of(context).textTheme.subtitle1)
+//                            ],
+//                          ),
                           Row(
                             children: <Widget>[
                               Expanded(
@@ -137,7 +141,7 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
           margin: EdgeInsetsDirectional.only(start: 20),
           padding: EdgeInsets.symmetric(horizontal: 10),
           height: 28,
-          width: 140,
+          width: 180,
           decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(100)), color: Theme.of(context).accentColor),
           alignment: AlignmentDirectional.center,
           child: Text(

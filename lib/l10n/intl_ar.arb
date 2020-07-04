@@ -109,7 +109,7 @@
   "full_address": "العنوان الكامل",
   "orders": "الطلبات",
   "history": "التاريخ",
-  "delivered": "تم التوصيل",
+  "update": "تم التوصيل",
   "dismiss": "تجاهل",
   "confirm": "تؤكد",
   "would_you_please_confirm_if_you_have_delivered_all_meals": "هل تسمح من فضلك بتأكيد ما إذا كنت قد سلمت جميع الوجبات إلى العميل",

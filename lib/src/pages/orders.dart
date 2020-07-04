@@ -19,6 +19,7 @@ class OrdersWidget extends StatefulWidget {
 
 class _OrdersWidgetState extends StateMVC<OrdersWidget> {
   OrderController _con;
+  bool initiallySet = false;
 
   _OrdersWidgetState() : super(OrderController()) {
     _con = controller;
@@ -27,11 +28,15 @@ class _OrdersWidgetState extends StateMVC<OrdersWidget> {
   @override
   void initState() {
     _con.listenForOrders();
+//    initiallySet = true;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+//    if (!initiallySet)
+//    _con.listenForOrders();
+//    initiallySet = !initiallySet;
     return Scaffold(
       key: _con.scaffoldKey,
       appBar: AppBar(

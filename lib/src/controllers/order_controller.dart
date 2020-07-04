@@ -1,3 +1,4 @@
+import 'package:deliveryboy/src/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -14,23 +15,28 @@ class OrderController extends ControllerMVC {
   }
 
   void listenForOrders({String message}) async {
-    final Stream<Order> stream = await getOrders();
-    stream.listen((Order _order) {
-      setState(() {
-        orders.add(_order);
-      });
-    }, onError: (a) {
-      print(a);
-      scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).verify_your_internet_connection),
-      ));
-    }, onDone: () {
-      if (message != null) {
+    var driver_ids = {1, int.parse(currentUser.value.id)};
+    driver_ids.forEach((element) async {
+      final Stream<Order> stream = await getOrders(driver_id: element);
+      stream.listen((Order _order) {
+        setState(() {
+          if (!orders.contains(_order))
+            orders.add(_order);
+        });
+      }, onError: (a) {
+        print(a);
         scaffoldKey?.currentState?.showSnackBar(SnackBar(
-          content: Text(message),
+          content: Text(S.of(context).verify_your_internet_connection),
         ));
-      }
+      }, onDone: () {
+        if (message != null) {
+          scaffoldKey?.currentState?.showSnackBar(SnackBar(
+            content: Text(message),
+          ));
+        }
+      });
     });
+
   }
 
   void listenForOrdersHistory({String message}) async {
