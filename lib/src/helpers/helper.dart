@@ -180,8 +180,10 @@ class Helper {
     order.foodOrders.forEach((foodOrder) {
       total += getTotalOrderPrice(foodOrder);
     });
-    total += order.deliveryFee;
-    total += order.tax * total / 100;
+    if (total < setting.value.deliveryFeeLimit){
+      total += order.deliveryFee;
+    }
+//    total += order.tax * total / 100;
     return total;
   }
 
