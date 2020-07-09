@@ -20,7 +20,7 @@ class OrderController extends ControllerMVC {
       final Stream<Order> stream = await getOrders(driver_id: element);
       stream.listen((Order _order) {
         setState(() {
-          if (!orders.contains(_order))
+          if (!orders.contains(_order) && _order.active)
             orders.add(_order);
         });
       }, onError: (a) {

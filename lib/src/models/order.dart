@@ -19,6 +19,7 @@ class Order {
   Payment payment;
   Address deliveryAddress;
   int driver_id;
+  bool active;
 
   Order();
 
@@ -35,6 +36,8 @@ class Order {
       deliveryAddress = jsonMap['delivery_address'] != null ? Address.fromJSON(jsonMap['delivery_address']) : new Address();
       foodOrders = jsonMap['food_orders'] != null ? List.from(jsonMap['food_orders']).map((element) => FoodOrder.fromJSON(element)).toList() : [];
       driver_id = jsonMap['driver_id'];
+      active = jsonMap['active'];
+
     } catch (e) {
       id = '';
       tax = 0.0;
