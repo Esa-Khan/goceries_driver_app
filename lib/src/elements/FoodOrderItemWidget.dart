@@ -86,10 +86,10 @@ class FoodOrderItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Helper.getPrice(Helper.getOrderPrice(foodOrder), context, style: Theme.of(context).textTheme.subtitle1),
+//                      Helper.getPrice(Helper.getOrderPrice(foodOrder), context, style: Theme.of(context).textTheme.subtitle1),
                       Text(
                         " x " + foodOrder.quantity.toString(),
-                        style: Theme.of(context).textTheme.caption,
+                        style: Theme.of(context).textTheme.subtitle2.apply(fontSizeFactor: 1.4),
                       ),
                     ],
                   ),

@@ -49,6 +49,10 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                         style: Theme.of(context).textTheme.bodyText1.apply(fontSizeFactor: 0.8),
                       ),
                       Text(
+                        '${widget.order.deliveryAddress.address}',
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                      Text(
                         DateFormat('dd/MM/yyyy | HH:mm').format(widget.order.dateTime),
                         style: Theme.of(context).textTheme.caption,
                       ),
@@ -64,7 +68,8 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                       Text(
                         '${widget.order.payment.method}',
                         style: Theme.of(context).textTheme.caption,
-                      )
+                      ),
+//                      SizedBox(height: 10),
                     ],
                   ),
                   children: <Widget>[

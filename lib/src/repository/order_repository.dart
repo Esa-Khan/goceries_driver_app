@@ -21,7 +21,7 @@ Future<Stream<Order>> getOrders({int driver_id}) async {
   _queryParams['api_token'] = _user.apiToken;
   _queryParams['with'] = 'driver;foodOrders;foodOrders.food;foodOrders.extras;orderStatus;deliveryAddress;payment';
 //  _queryParams['search'] = 'driver.id:${_user.id};order_status_id:$orderStatusId;delivery_address_id:null';
-  _queryParams['search'] = 'driver.id:${driver_id};order_status_id:$orderStatusId;delivery_address_id:null;active:true';
+  _queryParams['search'] = 'driver.id:${driver_id};order_status_id:$orderStatusId;delivery_address_id:null;';
   _queryParams['searchFields'] = 'driver.id:=;order_status_id:<>;delivery_address_id:<>';
   _queryParams['searchJoin'] = 'and';
   _queryParams['orderBy'] = 'id';

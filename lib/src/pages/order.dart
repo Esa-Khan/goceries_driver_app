@@ -220,9 +220,13 @@ class _OrderWidgetState extends StateMVC<OrderWidget> with SingleTickerProviderS
                 snap: true,
                 floating: true,
                 automaticallyImplyLeading: false,
+//                leading: new IconButton(
+//                  icon: new Icon(Icons.sort, color: Theme.of(context).hintColor),
+//                  onPressed: () => _con.scaffoldKey?.currentState?.openDrawer(),
+//                ),
                 leading: new IconButton(
-                  icon: new Icon(Icons.sort, color: Theme.of(context).hintColor),
-                  onPressed: () => _con.scaffoldKey?.currentState?.openDrawer(),
+                  icon: new Icon(Icons.keyboard_backspace, color: Theme.of(context).accentColor),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
                 centerTitle: true,
                 title: Text(
